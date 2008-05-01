@@ -1,0 +1,29 @@
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "spreadsheet_model" %>
+<%= javascript_include_tag "spreadsheet_views" %>
+<%= javascript_include_tag "spreadsheet_controllers" %>
+
+<%= stylesheet_link_tag "tablekit" %>
+
+<p>
+	<input type="text" id="spreadsheet_name" value="<%= @spreadsheet.name %>">
+	<%= button_to_function "spreadsheet name", "false" %><br/>
+	<input type="text" id="new_page_type">
+	<%= button_to_function "new page type", "new_column()" %><br/>
+	<input type="text" id="new_variable"><%= button_to_function "new variable", "new_row()" %>
+</p>
+
+<div id="div_for_spreadsheet_table"></div>
+
+<script>
+
+var moronic_excessive_security = '<%= form_authenticity_token %>' ;
+var spreadsheet_id, column_names, row_arrays, ajax_counter ;
+
+<%= @spreadsheet.to_javascript %>
+
+var spreadsheet_table = new SpreadsheetTable('div_for_spreadsheet_table', table_template) ;
+
+render_table() ;
+
+</script>

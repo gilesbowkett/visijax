@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<!-- 
+/*
+*
+* Copyright (c) 2007 Andrew Tetlaw & Millstream Web Software
+* http://www.millstream.com.au/view/code/tablekit/
+* Version: 1.2.1 2007-03-11
+* 
+* Permission is hereby granted, free of charge, to any person
+* obtaining a copy of this software and associated documentation
+* files (the "Software"), to deal in the Software without
+* restriction, including without limitation the rights to use, copy,
+* modify, merge, publish, distribute, sublicense, and/or sell copies
+* of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+* BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+* ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+* CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+* * 
+*/
+ -->
+	<head>
+		<link rel="stylesheet" type="text/css" media="all" href="style.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>TableKit</title>	
+	</head>
+	<body>
+		<div id="content">
+			<p><a href="http://www.millstream.com.au/view/code/tablekit/">Return to article</a></p>			
+			<h1>TableKit</h1>
+			<h2>Introduction</h2>
+			<p>TableKit is a collection of HTML table enhancements using the <a href="http://prototypejs.org" title="Prototype homepage">Prototype</a> framework. TableKit currently implements row striping, column sorting, column resizing and cell editing using Ajax.</p>
+			<h2>Demo: Sortable/Resizable/Editable</h2>
+			<p>Click the table header cells to sort the column, resize the column by dragging the right border of a header cell, click a cell in the table body to edit the value.</p>
+			<table class="sortable resizable editable">
+				<thead>
+					<tr><th class="sortfirstdesc" id="urgency">Urgency</th><th id="creation-date">Date</th><th id="time">Time</th><th id="title">Title</th><th id="status">Status</th><th id="author">Requested By</th><th id="cost">Cost</th><th id="size">Size</th></tr>
+				</thead>
+				<tfoot>
+					<tr><td>Urgency</td><td>Date</td><td>Time</td><td>Title</td><td>Status</td><td>Requested By</td><td>Cost</td><td>Size</td></tr>
+				</tfoot>
+				<tbody>
+					<tr id="N938747839"><td><div class="urg5">5</div></td><td>24/10/2005 10:47:41 AM</td><td>10:47:41 AM</td><td>Keyboard is Broken</td><td>In Progress</td><td>Tom</td><td>$200.00</td><td>30KB</td></tr>
+					<tr id="N938712239"><td><div class="urg5">5</div></td><td>24/10/2005 10:49:41 AM</td><td>10:49:41 AM</td><td>Keyboard is Broken</td><td>In Progress</td><td>Tom</td><td>$200.00</td><td>30 KB</td></tr>
+					<tr id="N938744539"><td><div class="urg3">3</div></td><td>24/10/2005 10:49:41 PM</td><td>10:49:41 PM</td><td>Windows is crashing</td><td>New</td><td>Bill</td><td>$300.00</td><td>30MB</td></tr>
+					<tr id="N938746764"><td><div class="urg4">4</div></td><td>17/02/2006</td><td>12:43:16 PM</td><td>Help, I'm on fire!</td><td>New</td><td>John</td><td>$250.00</td><td>30KB</td></tr>
+					<tr><td><div class="urg3">3</div></td><td>06/07/2006xxx</td><td>03:04:34 PM</td><td>The ring came off my pudding can</td><td>Assigned</td><td>Tom</td><td>$200.50</td><td>30GB</td></tr>
+					<tr><td><div class="urg2">2</div></td><td>06/07/2006</td><td>15:06:10</td><td>Should I open this email?</td><td>Assigned</td><td>Tom</td><td>$50.35</td><td>30TB</td></tr>
+					<tr><td><div class="urg1">1</div></td><td>06/07/2006</td><td>04:12:16 PM</td><td>I can't print</td><td>Assigned</td><td>Bill</td><td>$2005.30</td><td>30KB</td></tr>
+					<tr><td><div class="urg2">2</div></td><td>31/12/2006</td><td>09:35:47 AM</td><td>The internet is broken</td><td>Assigned</td><td>Jill</td><td>$600.00</td><td>32KB</td></tr>
+					<tr><td><div class="urg3">3</div></td><td>17/07/2006</td><td>04:21:24 PM</td><td>Blank Screen</td><td>Assigned</td><td>Xavier</td><td>$100.30</td><td>10GB</td></tr>
+					<tr><td><div class="urg4">4</div></td><td>26/07/2006</td><td>03:09:00 PM</td><td>My cup holder is not working</td><td>Closed</td><td>Mark</td><td>$100.40</td><td>20 MB</td></tr>
+					<tr><td><div class="urg5">5</div></td><td>24/10/2005 10:47:41 AM</td><td>10:47:41 AM</td><td>Keyboard is Broken</td><td>In Progress</td><td>Tom</td><td>$200.00</td><td>30KB</td></tr>
+					<tr><td><div class="urg5">5</div></td><td>24/10/2005 10:49:41 AM</td><td>10:49:41 AM</td><td>Keyboard is Broken</td><td>Closed</td><td>Tom</td><td>$200.00</td><td>30 KB</td></tr>
+					<tr><td><div class="urg3">3</div></td><td>24/10/2005 10:49:41 PM</td><td>10:49:41 PM</td><td>Windows is crashing</td><td>New</td><td>Bill</td><td>$300.00</td><td>30MB</td></tr>
+					<tr><td><div class="urg4">4</div></td><td>17/02/2006</td><td>12:43:16 PM</td><td>Help, I'm on fire!</td><td>New</td><td>John</td><td>$250.00</td><td>30KB</td></tr>
+					<tr><td><div class="urg3">3</div></td><td>06/07/2006</td><td>03:04:34 PM</td><td>The ring came off my pudding can</td><td>Assigned</td><td>Tom</td><td>$200.50</td><td>30GB</td></tr>
+					<tr><td><div class="urg2">2</div></td><td>06/07/2006</td><td>15:06:10</td><td>Should I open this email?</td><td>Closed</td><td>Tom</td><td>$50.35</td><td>30TB</td></tr>
+					<tr><td><div class="urg1">1</div></td><td>06/07/2006</td><td>04:12:16 PM</td><td>I can't print</td><td>Assigned</td><td>Bill</td><td>$2005.30</td><td>30KB</td></tr>
+					<tr><td><div class="urg2">2</div></td><td>31/12/2006</td><td>09:35:47 AM</td><td>The internet is broken</td><td>Assigned</td><td>Jill</td><td>$600.00</td><td>32KB</td></tr>
+					<tr><td><div class="urg3">3</div></td><td>17/07/2006</td><td>04:21:24 PM</td><td>Blank Screen</td><td>Assigned</td><td>Xavier</td><td>$100.30</td><td>10GB</td></tr>
+					<tr><td><div class="urg4">4</div></td><td>26/07/2006</td><td>03:09:00 PM</td><td>My cup holder is not working</td><td>In Progress</td><td>Mark</td><td>$100.40</td><td>20 MB</td></tr>
+				</tbody>
+			</table>
+			<h2>Documentation</h2>
+			<div id="mainmenu">
+				<ul id="tabs">
+					<li>
+						<a href="#doco-tablekit" id="doco-tablekit-tab">TableKit Basics</a>
+					</li>
+					<li>
+						<a href="#doco-sortable" id="doco-sortable-tab">Sortable</a>
+					</li>
+					<li>
+						<a href="#doco-resizable" id="doco-resizable-tab">Resizable</a>
+					</li>
+					<li>
+						<a href="#doco-editable" id="doco-editable-tab">Editable</a>
+					</li>
+				</ul>
+			</div>&nbsp;<div class="panel" id="doco-tablekit">
+				<h2>TableKit Basics</h2>
+				<h3>Installation</h3>
+				<p>Reference the script in your HTML: <a href="http://prototypejs.org" title="Prototype homepage">Prototype</a> and tablekit.js are required of course; <a title="Fastinit" href="http://tetlaw.id.au/view/javascript/fastinit">Fastinit</a> is optional.</p>
+				<pre><code>&lt;script type="text/javascript" src="scriptaculous/lib/prototype.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="fastinit.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="tablekit.js"&gt;&lt;/script&gt;</code></pre>
+				<h3>Simple Usage</h3>
+				<p>The easiest way to use TableKit is reference the script in your HTML and give you tables appropriate classes:</p>
+				<pre><code>&lt;table class="sortable resizable editable"&gt;</code></pre>
+				<ul>
+					<li>'sortable' to activate column sorting (and row striping)</li>
+					<li>'resizable' to activate column resizing</li>
+					<li>'editable' to activate cell editing. You must also set the Ajax URI for cell editing, for example:
+						<pre><code>TableKit.options.editAjaxURI = '/echo/';</code></pre>
+					</li>
+				</ul>
+				<p>When a table is initialised, if it doesn't have an <code>id</code> attribute one will be assigned in the form <code>tablekit-table-nn</code> where nn is an incremented number</p>
+				<h3>Options</h3>
+				<p>These are the options used globally for all tables unless otherwise speified.</p>
+				<ul>
+					<li><code>Option : Default</code></li>
+					<li><code>autoLoad : true</code>: If you don't want the script to load automatically set this to false</li>
+					<li><code>stripe : true</code>: enables row striping</li>
+					<li><code>sortable : true</code>: enables column sorting</li>
+					<li><code>resizable : true</code>: enables column resizing</li>
+					<li><code>editable : true</code>: enables cell editing</li>
+					<li><code>rowEvenClass : 'roweven'</code>: css class used for row striping</li>
+					<li><code>rowOddClass : 'rowodd'</code>: css class used for row striping</li>
+					<li><code>sortableSelector : ['table.sortable']</code>: selector for finding tables to make sortable</li>
+					<li><code>columnClass : 'sortcol'</code>: css class for each sortable column header cell</li>
+					<li><code>descendingClass : 'sortdesc'</code>: css class for sortable column header cell when sorted descending</li>
+					<li><code>ascendingClass : 'sortasc'</code>: css class for sortable column header cell when sorted ascending</li>
+					<li><code>noSortClass : 'nosort'</code>: css class for sortable column header cell to disable sorting for that column</li>
+					<li><code>sortFirstAscendingClass : 'sortfirstasc'</code>: css class for sortable column header cell to trigger initial ascendant sorting for that column</li>
+					<li><code>sortFirstDecendingClass : 'sortfirstdesc'</code>: css class for sortable column header cell to trigger initial decendant sorting for that column</li>
+					<li><code>resizableSelector : ['table.resizable']</code>: selector for finding tables to make resizable</li>
+					<li><code>minWidth : 10</code>: minimum width in pixels of a resizable column</li>
+					<li><code>showHandle : true</code>: shows the resize handle, with this set to false cell no handle is visible and resize is immediate with mousemove</li>
+					<li><code>resizeOnHandleClass : 'resize-handle-active'</code>: css class applied to header cell when the mouse pointer is in the resize handle zone (right hand cell border)</li>
+					<li><code>editableSelector : ['table.editable']</code>: selector for finding tables to make editable</li>
+					<li><code>formClassName : 'editable-cell-form'</code>: css class given to the form when a cell is made editable</li>
+					<li><code>noEditClass : 'noedit'</code>: css class used on a header cell to indicate column is not editable, or on an individual body cell to indicate that cell is not editable.</li>
+					<li><code>editAjaxURI : '/'</code>: form data is POSTed to this URI from the editable cell forms</li>
+					<li><code>editAjaxOptions : {}</code>: options for the <a href="http://prototypejs.org/api/ajax/updater" title="Prototype API">Prototype Ajax.Updater</a> used in editable cells</li>
+				</ul>
+				<p>Options can be modified directly, for example</p>
+				<pre><code>TableKit.options.rowEvenClass = 'even';</code></pre>
+				<p>If you supply options using the initialisation methods below, those options will be used for that table only, using the table's <code>id</code> attribute. This way you can specify different options for different tables.</p>
+				
+				<h3>Usage Styles</h3>
+				<p>TableKit supports several usage styles when initialising. You can use table class names as described above or one of the following options.</p>
+				<h4>By Selector</h4>
+				<p>You can change the selector used for automatic initialisation</p>
+				<pre><code>TableKit.options.sortableSelector = ['table.data-table'];</code></pre>
+				<h4>By Manual Initialisation</h4>
+				<p>You can initialise a specific table using the <code>init()</code> function</p>
+				<pre><code>TableKit.Sortable.init(table, {options});</code></pre>
+				<h4>By Object Creation</h4>
+				<p>You can create a <code>TableKit</code> option.</p>
+				<pre><code>var table = new TableKit(table, {options});</code></pre>
+				<p>A TableKit object has only a few methods that only need to be called if you need to, otherwise all the functionality works automatically</p>
+				<pre><code>table.sort(column, order) // sort a particular column
+table.resizeColumn(column, w) // resize a particular column
+table.editCell(row, column) // edit a specific cell</code></pre>
+				<p><a href="#doco-sortable" class="next-tab">Next Page : 'Sortable' &gt; </a></p>
+			</div>				
+			<div class="panel" id="doco-sortable">
+				<h2>TableKit.Sortable</h2>
+				<h3>Activation</h3>
+				<p>If the table has a thead then the last row of the thead (the one closest to the body) will be used as the header row to add the sorting 'onclick' event listeners - one to each header cell. If there is no thead the first table row will be used. Only rows in the table body are sorted, all other cells (in the thead or tfoot) are ignored.</p>
+				<h3>Sorting Types</h3>
+				<p>The table will attempt to automatically detect the sorting type for your columns (text, number, date...etc) by analysing the first cell. If you don't want it to do that you can specify the exact sorting by adding a class to your header cell for example class="number". Available ones are:</p>
+				<ul>
+					<li><code>"date-iso" // e.g. 2005-03-26T19:51:34Z</code></li>
+					<li><code>"date" // e.g. Mon, 18 Dec 1995 17:28:35 GMT</code></li>
+					<li><code>"date-au" // e.g. 25/12/2006 05:30:00 PM</code></li>
+					<li><code>"date-eu" // e.g. 25-12-2006</code></li>
+					<li><code>"date-us" // e.g. 12/25/2006 05:30:00 PM</code></li>
+					<li><code>"time" // e.g. 05:30:00 PM</code></li>
+					<li><code>"currency" // e.g. $55.00 - detects: $ &#163; &#165; &#8364; &#164;</code></li>
+					<li><code>"datasize" // e.g. 30MB - detects: B, KB, MB, GB, TB</code></li>
+					<li><code>"number"</code></li>
+					<li><code>"casesensitivetext"</code></li>
+					<li><code>"text"</code></li>
+				</ul>
+				<p>A special notes about dates: By default the script's automatic sort type detection will favour Australian dates, dd/mm/yyyy. If you want it to favour US dates, mm/dd/yyyy, then either add the class "date-us" to the header cell on the date column or read Advanced Sorting Types below.</p>
+				<h3>CSS Hooks</h3>
+				<h4>No Sort columns</h4>
+				<p>If you don't want a column to be sorted then give the header cell a class of "nosort".</p>
+				<h4>Sort First Column</h4>
+				<p>If you want a column to be sorted when the page loads then add a class to the header cell of that column; "sortfirstasc" for ascending and "sortfirstdesc" for descending.</p>
+				<h4>Other CSS Hooks</h4> 
+				<p>Header cells will be given the class "sortcol", and when sorted they will be given the class "sortasc" for ascending and "sortdesc" for descending.</p>
+				<h3>API</h3>
+				<p>You can initialise a specific table by using:</p>
+				<pre><code>TableKit.Sortable.init(table, {options});</code></pre>
+				<p>where table is a table element reference or ID and options are options matching the TableKit global options, you wish to apply to this table only.</p>
+				<p>To sort a specific table column (for example if you want to use an external control) you can call the sort function manually.</p>
+				<pre><code>TableKit.Sortable.sort(table, index, order);</code></pre>
+				<ul>
+					<li>table = null or a table reference or a table ID, if table is null then index must equal a cell element reference or a cell ID</li>
+					<li>index = a number or cell element reference or a cell ID : if index is a number then table cannot be null</li>
+					<li>order = sort direction (optional) 1 (ascending) or -1 (descending)</li>
+				</ul>
+				<h3>Advanced Sorting Types</h3>
+				<p>a collection of <code>TableKit.Sortable.Type</code> objects handles data type detection and sorting. Each one has a name. The sort function will attempt to match a sort type to a column by first reading the column header cell's <code>id</code>, then all the class names and finally will try automatic detection.</p>
+				<h4>Automatic Detection</h4>
+				<p>The <code>TableKit.Sortable.detectors</code> property is an array of sort type names. Each <code>TableKit.Sortable.Type</code> is queried to see if the first column cell's contents matches the sort type. The default list is:</p>
+				<pre><code>TableKit.Sortable.detectors = $w('date-iso date date-eu date-au time currency datasize number casesensitivetext text');</code></pre>
+				<p>You can change it according to your requirements.</p>
+				<h4>Custom Sorting Types</h4>
+				<p>You can create a custom sort type by creating one or more <code>TableKit.Sortable.Type</code> objects and adding them using the <code>TableKit.Sortable.addSortType()</code> function. That function can take any number of objects as arguments. For example:</p>
+				<pre><code>TableKit.Sortable.addSortType(
+new TableKit.Sortable.Type('type1', {options}),
+new TableKit.Sortable.Type('type2', {options})</code></pre>
+				<p>The first argument of a new type object is its name, the second is an array of options that control how the sort type detects and compares. Here's an example:</p>
+				<pre><code>TableKit.Sortable.addSortType(
+	new TableKit.Sortable.Type('number', {
+		pattern : /^[-+]?[\d]*\.?[\d]+(?:[eE][-+]?[\d]+)?/,
+		normal : function(v) {
+			// This will grab the first thing that looks like a number from a string, so you can use it to order a column of various srings containing numbers.
+			v = parseFloat(v.replace(/^.*?([-+]?[\d]*\.?[\d]+(?:[eE][-+]?[\d]+)?).*$/,"$1"));
+			return isNaN(v) ? 0 : v;
+		}
+	})
+);				</code></pre>
+				<ul>
+					<li><code>pattern</code>: a regular expression to use in a <code>string.test()</code> operation for automatic data type detection</li>
+					<li><code>normal</code>: a function used to normalise values for comparison. Before comparing two cells both cells' values are put through this function</li>
+				</ul>
+				<p>If the default comparison function is not adequate you can specifiy your own by adding <code>compare: function(a,b){}</code> to the options. This function that takes 2 arguments, the 2 values being compared, and returns either 1, 0 or -1. 1 if a is greater than b, -1 if b is greater than a and 0 if they are equal. The default comparison function looks like this:</p>
+				<pre><code>TableKit.Sortable.Type.prototype.compare = function(a,b){
+		return TableKit.Sortable.Type.compare(this.normal(a), this.normal(b));
+}
+TableKit.Sortable.Type.compare = function(a,b) {
+	return a &lt; b ? -1 : a == b ? 0 : 1;
+}</code></pre>
+				<p>Here's an example of custom sort type usage from the demo. I've added a sort type called 'status' to sort the Status column appropriately. I've given the header cell of that column an <code>id</code> of 'status' so that it will use my custom sort type.</p>
+				<pre><code>TableKit.Sortable.addSortType(
+	new TableKit.Sortable.Type('status', {
+		pattern : /^[New|Assigned|In Progress|Closed]$/,
+		normal : function(v) {
+			switch(v) {
+				case 'New':
+					return 0;
+					break;
+				case 'Assigned':
+					return 1;
+					break;
+				case 'In Progress':
+					return 2;
+					break;
+				case 'Closed':
+					return 3;
+					break;
+				default:
+					return 4;
+			}
+		}
+	}
+));</code></pre>
+
+				<h2>TableKit.Rows</h2>
+				When sorting a table, body rows will also be given the alternating classes "rowodd" and "roweven" on load and after each sort as an added bonus.
+				<h3>API</h3>
+				<p>If you just want to stripe a table you can use:</p>
+				<pre><code>TableKit.Rows.stripe(table)</code></pre>
+				<p>where table is a table element reference or ID</p>
+				<p><a href="#doco-resizable" class="next-tab">Next Page : 'Resizable' &gt; </a></p>
+			</div>
+			<div class="panel" id="doco-resizable">
+				<h2>TableKit.Resizable</h2>
+				<h3>Activation</h3>
+				<p>The table header cells are used to trigger column resizing. When the mouse pointer moves close to the right edge of the cell, the cell is given the class 'resize-handle-active' and a 'mousedown' event listener is enabled. If the mousedown event occurs a drag handle is created and the user can drag it left and right. When the mouse button is released the column's width is adjusted accordingly.</p>
+				<p>Because we are resizing a HTML table the columns may not resize exactly as intended as opposed to a proper data grid. Browsers tend to recalibrate all table columns according to the maximum width of the table, which by default is 100% and the contents of the cells.</p>
+				<h3>CSS Hooks</h3>
+				<p>When appripriate the cell is given the class 'resize-handle-active', which can be used to set the cursor style (as it is in the demo). The resize handle itself is a <code>div</code> element with a class of 'resize-handle'. This can be used to style the resize handle.</p>
+				<h3>API</h3>
+				<p>You can initialise a specific table by using:</p>
+				<pre><code>TableKit.Resizable.init(table, {options});</code></pre>
+				<p>where table is a table element reference or ID and options are options matching the TableKit global options, you wish to apply to this table only.</p>
+				<p>To resize a specific table column (for example if you want to use an external control) you can call the resize function manually.</p>
+				<pre><code>TableKit.Resizable.resize(table, index, w);</code></pre>
+				<ul>
+					<li>table = null or a table reference or a table ID, if table is null then index must equal a cell element reference or a cell ID</li>
+					<li>index = a number or cell element reference or a cell ID : if index is a number then table cannot be null</li>
+					<li>w = width (number of pixels to resize to)</li>
+				</ul>
+				<p><a href="#doco-editable" class="next-tab">Next Page : 'Editable' &gt; </a></p>
+			</div>
+			<div class="panel" id="doco-editable">
+				<h2>TableKit.Editable</h2>
+				<h3>Activation</h3>
+				<p>Once the table is initialised, a mouse click on a table body cell, will activate a HTML form allowing the user to edit the new value via a <a href="http://prototypejs.org/api/ajax/updater" title="Prototype API">Prototype Ajax.Updater</a>.</p>
+				<h3>API</h3>
+				<p>You can initialise a specific table by using:</p>
+				<pre><code>TableKit.Editable.init(table, {options});</code></pre>
+				<p>where table is a table element reference or ID and options are options matching the TableKit global options, you wish to apply to this table only.</p>
+				<p>To edit a specific table cell (for example if you want to use an external control) you can call the edit function manually.</p>
+				<pre><code>TableKit.Editable.editCell(table, index, cindex);</code></pre>
+				<ul>
+					<li>table = null or a table reference or a table ID, if table is null then index must equal a cell element reference or a cell ID</li>
+					<li>index = a number or element reference or ID: if index is a number, then it must be the row index number, table cannot be null and cindex must be supplied too. If it is not a number then it is treated as the cell element reference.</li>
+					<li>cindex = a number (the cell index)</li>
+				</ul>
+				<h3>Cell Editors</h3>
+				<p>A collection of <code>TableKit.Editable.CellEditor</code> objects handles cell editing. Each CellEditor has a name and this name is matched to the <code>id</code> or class name of the column header cell to find the appropriate editor, otherwise a standard text input is used.</p>
+				<p>Adding cell editors is easy:</p>
+				<pre><code>TableKit.Editable.textInput(name,attributes); // creates a standard text input (the default)
+TableKit.Editable.multiLineInput(name,attributes); // creates a text area
+TableKit.Editable.selectInput(name,attributes,selectOptions); // creates a select element</code></pre>
+				<ul>
+					<li><code>name</code>: the name to associate this editor with a table column</li>
+					<li><code>attributes</code>: HTML attributes to apply to the input element</li>
+					<li><code>selectOptions</code>: an array of options for the select element, e.g. <code>[['text', 'value'],['option 1', '1'],['option 2', '2']]</code></li>
+				</ul>
+				<p>The demo is setup this way:</p>
+				<pre><code>TableKit.Editable.selectInput('urgency', {}, [
+			['1','1'],
+			['2','2'],
+			['3','3'],
+			['4','4'],
+			['5','5']																												
+		]);
+TableKit.Editable.multiLineInput('title');</code></pre>
+				<p>The demo has a select editor for the Urgency column and a textarea for the Title column.</p>
+				<h3>Updating the Cell</h3>
+				<p>Each cell editor uses a Prototype Ajax Updater. The POST body is generated from the following:</p>
+				<pre><code>'&amp;row=n&amp;cell=n&amp;id=id&amp;field=field&amp;value=xxxxxx'</code></pre>
+				<ul>
+					<li><code>&amp;row=n</code>: The row index of the edited cell</li>
+					<li><code>&amp;cell=n</code>: The row index of the edited cell</li>
+					<li><code>&amp;id=id</code>: The <code>id</code> attribute of the row, it may be useful to set this to the record ID you are editing</li>
+					<li><code>&amp;field=field</code>: The <code>id</code> attribute of the header cell of the column of the edited cell, it may be useful to set this to the field name you are editing</li>
+					<li><code>&amp;value=xxxxxx</code>: The rest of the POST body is the serialised form. The default name of the field is 'value'.</li>
+				</ul>
+				<p>This information is POSTed to the URI specified in <code>TableKit.options.editAjaxURI</code> by default. If you initialise a table with options you can specify a different URI for each table. You can also specify a different URI in custom cell editors (see below)</p>
+				<p>Similarly the Ajax Updater uses the options from <code>TableKit.options.editAjaxOptions</code></p>
+				<h3>Custom Cell Editors</h3>
+				<p>To make your own cell editor simply make a new <code>TableKit.Editable.CellEditor</code> object and add it to the collection using the <code>TableKit.Editable.addCellEditor</code> function. For example:</p>
+				<pre><code>TableKit.Editable.addCellEditor(
+	new TableKit.Editable.CellEditor('yourname', {
+		element : 'select',
+		attributes : {name : 'favourite_food', title : 'Please select your favourite food from the list'},
+		selectOptions : [['Cheese','Cheese'],['Llama','Llama'],['Staot','Staot'],['Halibut','Halibut']]
+	})
+);</code></pre>
+			<p>The available options are:</p>
+			<ul>
+				<li><code>Option : Default</code></li>
+				<li><code>element : 'input'</code>: the HTML element used for the form</li>
+				<li><code>attributes : {name : 'value', type : 'text'}</code>: the attributes to apply to the element</li>
+				<li><code>selectOptions : []</code>: if the element is a <code>select</code>, these are the options</li>
+				<li><code>showSubmit : true</code>: show a sumit button</li>
+				<li><code>submitText : 'OK'</code>: the text on the submit button</li>
+				<li><code>showCancel : true</code>: show a cancel link</li>
+				<li><code>cancelText : 'Cancel'</code>: the text of the cancel link</li>
+				<li><code>ajaxURI : null</code>: the URI the form body is POSTed to for this editor only</li>
+				<li><code>ajaxOptions : null</code>: the options for the Prototype Ajax Updater object for this editor only</li>
+			</ul>
+			<h3>Custom Cell Editor Objects</h3>
+			<p>Of course you can write your own cell editor objects from scratch. A cell editor object is really just an object with one property <code>name</code> and one method <code>edit</code></p>
+			<pre><code>customEditorObject = function(name) {
+	this.name = name;
+}
+customEditorObject.prototype.edit = function(cell){ //do something }</code></pre>
+			<p>The <code>edit</code> function is called when a body cell is clicked on. The function should handle setting up the form and handling the submit event. It can be added to the collection using the standard <code>TableKit.Editable.addCellEditor</code> function</p>
+			
+			
+			</div>						
+		</div>
+		<script type="text/javascript" src="/scriptaculous/lib/prototype.js"></script>
+		<script type="text/javascript" src="fabtabulous.js"></script>
+		<script type="text/javascript" src="fastinit.js"></script>
+		<script type="text/javascript" src="tablekit.js"></script>
+		<script type="text/javascript">
+			TableKit.Sortable.addSortType(new TableKit.Sortable.Type('status', {
+					pattern : /^[New|Assigned|In Progress|Closed]$/,
+					normal : function(v) {
+						var val = 4;
+						switch(v) {
+							case 'New':
+								val = 0;
+								break;
+							case 'Assigned':
+								val = 1;
+								break;
+							case 'In Progress':
+								val = 2;
+								break;
+							case 'Closed':
+								val = 3;
+								break;
+						}
+						return val;
+					}
+				}
+			));
+			TableKit.options.editAjaxURI = '/echo/';
+			TableKit.Editable.selectInput('urgency', {}, [
+						['1','1'],
+						['2','2'],
+						['3','3'],
+						['4','4'],
+						['5','5']																												
+					]);
+			TableKit.Editable.multiLineInput('title');
+			var _tabs = new Fabtabs('tabs');
+			$$('a.next-tab').each(function(a) {
+				Event.observe(a, 'click', function(e){
+					Event.stop(e);
+					var t = $(this.href.match(/#(\w.+)/)[1]+'-tab');
+					_tabs.show(t);
+					_tabs.menu.without(t).each(_tabs.hide.bind(_tabs));
+				}.bindAsEventListener(a));
+			});
+		</script>
+	</body>
+</html>
